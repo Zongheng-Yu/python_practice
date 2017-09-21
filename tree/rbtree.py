@@ -18,9 +18,6 @@ class RBTree(BinarySearchTree):
     def insert(self, new_node):
         pass
 
-    def search(self, key):
-        pass
-
     def delete(self, key):
         pass
 

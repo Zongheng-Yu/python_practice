@@ -92,21 +92,47 @@ def replace_node_with_only_child(node, chiid):
     if chiid:
         chiid.parent = node.parent
 
-    return chiid
-
 
 def delete(node):
+    successor = None
     if node.has_left() and node.has_right():
         max_node = find_max(node.left)
-        max_node.key, node.key = node.key, max_node.key
-        delete(max_node)
-        return node
+        # remove max_node from tree
+        replace_node_with_only_child(max_node, None)
+        # replace node with max_node
+        # in case node is root node
+        if node.parent:
+            # link father
+            if node.is_left():
+                node.parent.left = max_node
+            else:
+                node.parent.right = max_node
+
+        # in case that max node is node.left and have been removed from the tree
+        if node.left:
+            # link left tree
+            max_node.left = node.left
+            if node.left:
+                max_node.left.parent = max_node
+
+        # link right tree
+        max_node.right = node.right
+        max_node.right.parent = max_node
+
+        successor = max_node
     elif node.has_right():
-        return replace_node_with_only_child(node, node.right)
+        replace_node_with_only_child(node, node.right)
+        successor = node.right
     elif node.has_left():
-        return replace_node_with_only_child(node, node.left)
+        replace_node_with_only_child(node, node.left)
+        successor = node.left
     else:
-        return replace_node_with_only_child(node, None)
+        replace_node_with_only_child(node, None)
+
+    node.parent = None
+    node.left = None
+    node.right = None
+    return successor
 
 
 class TreeNode(object):
