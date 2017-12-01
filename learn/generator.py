@@ -6,47 +6,63 @@
 生成器表达式:
 (expr for iter_var in iterable if cond_expr)
 """
+from unittest import TestCase, main
 
 
-def cols(): # example of simple generator
-    yield 56
-    yield 2
+def sample_yield(): # example of simple generator
+    yield 0
     yield 1
+    yield 2
 
 
-class FindLongestLineInFile(object):
-    @staticmethod
-    def traditional_way(file_name):
-        longest = 0
-        with open(file_name, 'rb') as fd:
-            for line in fd:
-                length = len(line.strip())
-                if length > longest:
-                    longest = length
+def nested_yield():
+    for each in sample_yield():
+        yield each
+    yield 3
 
-        return longest
 
-    @staticmethod
-    def list_comps(file_name):
-        with open(file_name, 'rb') as fd:
-            return max([len(line.strip()) for line in fd])
+def recurse_yield(depth=0):
+    if depth > 0:
+        for each in recurse_yield(depth - 1):
+            yield each
+    yield depth
 
-    @staticmethod
-    def generator(file_name):
-        with open(file_name, 'rb') as fd:
-            return max(len(line.strip()) for line in fd)
+
+class TestYield(TestCase):
+    def test_generator_expression(self):
+        ge = (each for each in range(5))
+        self.assertEqual(ge.next(), 0)
+        self.assertEqual(ge.next(), 1)
+        self.assertEqual(ge.next(), 2)
+        self.assertEqual(ge.next(), 3)
+        self.assertEqual(ge.next(), 4)
+        self.assertRaises(StopIteration, ge.next)
+
+    def test_sample_yield(self):
+        ge = sample_yield()
+        self.assertEqual(ge.next(), 0)
+        self.assertEqual(ge.next(), 1)
+        self.assertEqual(ge.next(), 2)
+        self.assertRaises(StopIteration, ge.next)
+
+    def test_nestd_yield(self):
+        ge = nested_yield()
+        self.assertEqual(ge.next(), 0)
+        self.assertEqual(ge.next(), 1)
+        self.assertEqual(ge.next(), 2)
+        self.assertEqual(ge.next(), 3)
+        self.assertRaises(StopIteration, ge.next)
+
+    def test_recurse_yield(self):
+        ge = recurse_yield(5)
+        self.assertEqual(ge.next(), 0)
+        self.assertEqual(ge.next(), 1)
+        self.assertEqual(ge.next(), 2)
+        self.assertEqual(ge.next(), 3)
+        self.assertEqual(ge.next(), 4)
+        self.assertEqual(ge.next(), 5)
+        self.assertRaises(StopIteration, ge.next)
+
 
 if __name__ == '__main__':
-    print FindLongestLineInFile.traditional_way("example.log")
-    print FindLongestLineInFile.list_comps("example.log")
-    print FindLongestLineInFile.generator("example.log")
-    for each in cols():
-        print each
-
-    print
-    a = cols()
-    print a
-    print a.next()
-    print a.next()
-    print a.next()
-    print a.next()
+    main(verbosity=2)
