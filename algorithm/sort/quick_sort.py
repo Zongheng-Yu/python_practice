@@ -22,7 +22,7 @@ def quick_sort(ary):
 def qsort(ary, left, right):
     if left >= right: return ary
     key = ary[left]
-    lp = left
+    lp = left + 1
     rp = right
     while lp < rp:
         while ary[rp] >= key and lp < rp:

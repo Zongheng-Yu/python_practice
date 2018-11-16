@@ -1,29 +1,31 @@
-class creature(object):
+import unittest
+
+
+class Creature(object):
     WHO_AM_I = 'creature'
 
     def __init__(self):
         self.name = 'creature'
 
     def self_introduction(self):
-        print self.WHO_AM_I + ' is '+ self.name
+        return self.name + ' is ' + self.WHO_AM_I
 
 
-class animal(creature):
+class Animal(Creature):
     WHO_AM_I = 'animal'
 
     def __init__(self):
-        super(animal, self).__init__()
+        super(Animal, self).__init__()
         self.name = 'animal'
-        pass
 
-class plant(creature):
+
+class Plant(Creature):
     def __init__(self):
-        super(plant, self).__init__()
+        super(Plant, self).__init__()
         self.name = 'plant'
-        pass
 
 
-class Microorganism(creature):
+class Microorganism(Creature):
     WHO_AM_I = 'microorganism'
 
     def __init__(self):
@@ -31,11 +33,26 @@ class Microorganism(creature):
         pass
 
     def self_introduction(self):
-        print "Hello, ",
-        super(Microorganism, self).self_introduction()
+        return super(Microorganism, self).self_introduction()
+
+
+class Subcreature(Creature):
+    WHO_AM_I = 'creature'
+
+    def __init__(self):
+        super(Subcreature, self).__init__()
+
+    def self_introduction(self):
+        return self.name + ' is ' + self.WHO_AM_I
+
+
+class TestInheritance(unittest.TestCase):
+    def test_inheritance(self):
+        self.assertEqual(Animal().self_introduction(), 'animal is animal')
+        self.assertEqual(Plant().self_introduction(), 'plant is creature')
+        self.assertEqual(Microorganism().self_introduction(), 'microorganism is microorganism')
+        self.assertEqual(Subcreature().self_introduction(), 'creature is creature')
 
 
 if __name__ == '__main__':
-    animal().self_introduction()
-    plant().self_introduction()
-    Microorganism().self_introduction()
+    unittest.main()

@@ -5,15 +5,26 @@ from insert_sort import insert_sort
 from selection_sort import selection_sort
 from merge_sort import merge_sort, merge_sort_memory_friendly
 from quick_sort import quick_sort
-from heap_sort import heap_sort
+from heap import heap_sort
 
 
 class TestSortingMethods(TestCase):
     RAW_DATA = []
     REF_DATA = [0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9]
 
+    @classmethod
+    def setUpClass(cls):
+        pass
+
+    @classmethod
+    def tearDownClass(cls):
+        pass
+
     def setUp(self):
         self.RAW_DATA = [3, 4, 6, 2, 1, 0, 7, 9, 8, 5, 5]
+
+    def tearDown(self):
+        pass
 
     def test_bubble_sort(self):
         self.assertEqual(bubble_sort(self.RAW_DATA), self.REF_DATA)

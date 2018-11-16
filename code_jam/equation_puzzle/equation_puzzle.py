@@ -1,0 +1,104 @@
+# -*- coding: utf-8 -*-
+import sys
+import re
+import copy
+from multiprocessing import Pool
+
+
+NUMBER_COUNT = 10
+
+
+def parse_arg():
+    if len(sys.argv) > 1:
+        return sys.argv[1]
+    else:
+        raise Exception("Please provide the input filename")
+
+
+def parse_input_file(filename):
+    with open(filename) as fd:
+        raw_string = fd.readline()
+
+    char_map = dict()
+    result = re.match(r'^\s*(\w+)\s*\*\s*(\w+)\s*=\s*(\w+)\s*$', raw_string)
+    if result:
+        left = result.groups()[0]
+        right = result.groups()[1]
+        result = result.groups()[2]
+    else:
+        raise Exception('Wrong format: ' + raw_string)
+
+    for char in left + right + result:
+        if char not in char_map:
+            char_map[char] = CharItem(char)
+    char_map[left[0]].is_leading = True
+    char_map[right[0]].is_leading = True
+    char_map[result[0]].is_leading = True
+    return list(char_map.values()), Equation(left, right, result, raw_string)
+
+
+class CharItem(object):
+    def __init__(self, char, value=-1, is_leading=False):
+        self.char = char
+        self.value = value
+        self.is_leading = is_leading
+
+
+class Equation(object):
+    def __init__(self, left, right, result, raw_string):
+        self._left = left
+        self._right = right
+        self._result = result
+        self._raw_string = raw_string
+
+    def test_equation(self, char_items):
+        left = self._to_int(self._left, char_items)
+        right = self._to_int(self._right, char_items)
+        result = self._to_int(self._result, char_items)
+        if left * right == result:
+            solution = self._raw_string
+            for item in char_items:
+                solution = solution.replace(item.char, str(item.value))
+            print(solution)
+
+    @staticmethod
+    def _to_int(string, char_items):
+        num = 0
+        for char in string:
+            for item in char_items:
+                if char == item.char:
+                    num = num*10 + item.value
+        return num
+
+
+def search_result(char_items, number_occupation, depth, equation):
+    if depth == len(char_items):
+        equation.test_equation(char_items)
+        return
+
+    for i in range(NUMBER_COUNT):
+        if not(number_occupation[i] or (char_items[depth].is_leading and i == 0)):
+            number_occupation[i] = True
+            char_items[depth].value = i
+            search_result(char_items, number_occupation, depth+1, equation)
+            number_occupation[i] = False
+
+
+def main():
+    filename = parse_arg()
+    char_items, equation = parse_input_file(filename)
+    number_occupation = [False] * NUMBER_COUNT
+    args_list = list()
+    for i in range(NUMBER_COUNT):
+        if not (char_items[0].is_leading and i == 0):
+            number_occupation[i] = True
+            char_items[0].value = i
+            args_list.append((copy.deepcopy(char_items), copy.deepcopy(number_occupation), 1, equation))
+            number_occupation[i] = False
+
+    with Pool(NUMBER_COUNT) as p:
+        p.starmap(search_result, args_list)
+
+
+if __name__ == '__main__':
+    main()

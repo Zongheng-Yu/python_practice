@@ -21,7 +21,17 @@ def fun():
 
 
 import time
-from functools import partial
+from functools import partial, wraps
+
+
+def print_function_name(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print func.__name__
+        return func(*args, **kwargs)
+
+    print wrapper.__name__
+    return wrapper
 
 
 def sample_time_print_decorator(func):
@@ -82,10 +92,16 @@ def echo2(words):
     print words
 
 
+@print_function_name
+def what_is_my_name():
+    pass
+
+
 if __name__ == '__main__':
     foo()
     say("i am saying nothing")
     echo("Repeating")
     echo2("ham")
+    what_is_my_name()
     pass
 
