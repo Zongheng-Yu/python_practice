@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import sys
-import copy
-from multiprocessing import Pool
 
 
 def parse_arg():
@@ -13,32 +11,48 @@ def parse_arg():
 
 def parse_input_file(filename):
     with open(filename) as fd:
-        test_line_num, user_num = fd.readline().strip().split(r',')
-        test_line_num = int(test_line_num)
-        user_num = int(user_num)
+        test_line_num, user_num = map(int, fd.readline().strip().split(r','))
         user_list = list()
         for i in range(user_num):
-            user_list.append(list(map(int, fd.readline().strip().split(r','))))
+            user_list.append(set(map(lambda x: x-1, map(int, fd.readline().strip().split(r',')))))
 
     return test_line_num, user_list
 
 
-def test_solution(solution, user_list):
-    for i in range(len(solution)):
-        if solution[i] not in user_list[i]:
-            return False
-    return True
+solution_number = 0
 
 
-def search_solution(test_line_num, user_list):
-    pass
+def search_solution(test_line_occupation, user_list, depth):
+    if depth >= len(user_list):
+        global solution_number
+        solution_number += 1
+        return
+
+    for each in user_list[depth]:
+        if not test_line_occupation[each]:
+            test_line_occupation[each] = True
+            search_solution(test_line_occupation, user_list, depth+1)
+            test_line_occupation[each] = False
+
 
 def main():
     filename = parse_arg()
     test_line_num, user_list = parse_input_file(filename)
-    solution = [0] * len(user_list)
-    for each in range(test_line_num):
-        if
+    search_solution([False]*test_line_num, user_list, 0)
+    print(solution_number)
+    sum = 0
+    set1 = user_list[0]
+    for set2 in user_list[1:]:
+        tmp = 1
+        for each in range(len(set1 & set2)):
+            tmp *= (each + 1)
+        sum += tmp
+        sum += len(set1 - set2) * len(set2)
+        sum += len(set2 - set1) * len(set1)
+        set1 = set1 | set2
+
+    print(sum)
+
 
 if __name__ == '__main__':
     main()

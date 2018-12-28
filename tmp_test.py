@@ -1,10 +1,6 @@
-import re
+import json
 
-
-def func():
-    try:
-        return 1
-    finally:
-        return 2
-
-print func()
+raw_string = '[{"a":"aa", "b":"bb"},{"c":"cc", "d":"dd"}]'
+obj = json.loads(raw_string)
+print(obj)
+print(obj[0])

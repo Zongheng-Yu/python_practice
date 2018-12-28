@@ -46,16 +46,16 @@ class CharItem(object):
 
 class Equation(object):
     def __init__(self, left, right, result, raw_string):
-        self._left = left
-        self._right = right
-        self._result = result
+        self.left = left
+        self.right = right
+        self.result = result
         self._raw_string = raw_string
         self._solutions = list()
 
     def test_equation(self, char_items):
-        left = self._to_int(self._left, char_items)
-        right = self._to_int(self._right, char_items)
-        result = self._to_int(self._result, char_items)
+        left = self._to_int(self.left, char_items)
+        right = self._to_int(self.right, char_items)
+        result = self._to_int(self.result, char_items)
         if left * right == result:
             solution = self._raw_string
             for item in char_items:
@@ -80,6 +80,8 @@ def search_result(char_items, number_occupation, depth, equation):
     if depth == len(char_items):
         equation.test_equation(char_items)
         return
+
+    if
 
     for i in range(NUMBER_COUNT):
         if not(number_occupation[i] or (char_items[depth].is_leading and i == 0)):

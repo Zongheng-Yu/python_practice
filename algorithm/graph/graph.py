@@ -135,7 +135,7 @@ class Graph(object):
         if dst not in self._graph:
             self.add_vertex(dst)
 
-        self.get_vertex(src).add_adj(self.get_vertex(dst), weight)
+        self.get_vertex(src).add_neighbor(self.get_vertex(dst), weight)
 
     def get_vertex(self, key):
         if key in self._graph:
