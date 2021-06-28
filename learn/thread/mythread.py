@@ -13,11 +13,12 @@ def write_log():
 
 def print_a():
     while True:
-        print 'hello, hello, hello, hello'
+        print('hello, hello, hello, hello')
+
 
 def print_b():
     while True:
-        print 'kitty, kitty, kitty, kitty'
+        print('kitty, kitty, kitty, kitty')
 
 
 if __name__ == '__main__':

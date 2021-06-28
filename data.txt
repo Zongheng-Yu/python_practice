@@ -1,0 +1,128 @@
+cloudplatform: vcp1
+cluster-id: 5g19vnf-02
+database: 192.168.2.10
+deployment:
+  max_number_of_cpcl: 1
+  max_number_of_cpue: 7
+  max_number_of_upue: 4
+  min_number_of_cpcl: 1
+  min_number_of_cpue: 1
+  min_number_of_upue: 1
+  number_of_cpcl: 1
+  number_of_cpue: '1'
+  number_of_upue: '1'
+dns-forwarders:
+- 10.56.126.31
+dpdk-conf-type: oam_296_B
+enable-sriov: true
+enable_internal_dhcp: false
+etcd-instances:
+- 5g19vnf-02-oam-0
+ha_db_backend: memory
+ha_db_memory_size: 256
+internal-service-ip-pool:
+  internal:
+    cidr: 192.168.2.0/24
+    exclude_range_end: 192.168.2.165
+    exclude_range_start: 192.168.2.2
+  internal_srv:
+    cidr: 169.253.0.0/24
+    exclude_range_end: 169.253.0.165
+    exclude_range_start: 169.253.0.2
+ip-info:
+  fm_a:
+    ip_addrs: null
+    mac: fa:16:3e:05:8d:22
+    mtu: 1400
+    provider-network-mtu: 1400
+    role: external
+  fm_b:
+    ip_addrs: null
+    mac: fa:16:3e:99:0f:39
+    mtu: 1400
+    provider-network-mtu: 1400
+    role: external
+  internal:
+    ip_addrs:
+    - 192.168.2.10/24
+    mac: fa:16:3e:70:26:06
+    mtu: 1400
+    provider-network-mtu: 1400
+    role: internal
+  internal_srv:
+    ip_addrs:
+    - 169.253.0.7/24
+    mac: fa:16:3e:ce:9a:2f
+    mtu: 1400
+    provider-network-mtu: 1400
+    role: internal
+  oam:
+    ip_addrs:
+    - 10.57.200.109/26
+    mac: fa:16:3e:03:ad:d0
+    mtu: 1400
+    provider-network-mtu: 1400
+    role: oam
+ip-sid-info:
+  fm_a:
+    ip_addrs: 192.128.6.6/24
+    sid: 1311
+  fm_b:
+    ip_addrs: 192.128.9.6/24
+    sid: 1314
+  fm_lo:
+    ip_addrs: 192.128.36.37/32
+    role: F1-M
+ntp-server-prefer: null
+ntp-servers:
+- 10.56.126.22
+oam-default-gws:
+- 10.57.200.65
+oam-ip:
+  interface: oam
+  ip-addrs:
+  - 10.57.200.109/26
+  roles:
+  - ssh
+  type: physical
+quorate-monitor-voter-nodes:
+- 5g19vnf-02-oam-0
+roles:
+- management
+- external-connectivity
+- storage
+- 5gbts_oam
+storage:
+  install: true
+  local:
+    db:
+      disk: af7733bf-6e88-4d37-b254-8a73a7bb4964
+      fstype: ext4
+      mount-to: /mnt/db
+    dbcm:
+      disk: 654187e5-50b2-45e4-80ca-d0a840a9824a
+      fstype: ext4
+      mount-to: /mnt/dbcm
+  provider:
+    nfs4:
+      ccs:
+        disk: 5f4b2531-a1d9-4293-8de3-d26343177f0f
+        fstype: ext4
+        mount-to: /mnt/ccs
+      export:
+        disk: feb9b97c-3bcb-46e0-a876-113eaaa51b7a
+        fstype: ext4
+        mount-to: /mnt/export
+      log:
+        disk: 6c619fa8-026e-4096-a7b5-ae90e599bd57
+        fstype: ext4
+        mount-to: /mnt/log
+      mstate:
+        disk: ab12bb24-e209-4cc4-92a6-60716e8c35e3
+        fstype: ext4
+        mount-to: /mnt/mstate
+      services:
+        disk: 0263a155-2ee2-4d1d-8d21-36edea8a7d63
+        fstype: ext4
+        mount-to: /mnt/services
+  ha-mode: 2n

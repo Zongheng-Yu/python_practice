@@ -1,0 +1,26 @@
+lrip-info:
+  backup-ether: ext1
+  master-ether: ext0
+  vlan-id: 99
+lrip-app-info:
+  f1om:
+    sid: 1322
+    ip_role_list:
+      -
+        ip_addrs: ['192.168.1.10/24', '2a00:8a00:2000:1290::5808/64']
+        roles: Tracing
+      -
+        ip_addrs: ['192.168.1.11/24', '2a00:8a00:2000:1290::5809/64']
+        roles: F1-M
+  fronthaul:
+    sid: 1322
+    ip_role_list:
+      -
+        ip_addrs: ['192.168.1.10/24', '2a00:8a00:2000:1290::5808/64']
+        roles: F1-C,X2-C
+  backhaul:
+    sid: 1322
+    ip_role_list:
+      -
+        ip_addrs: ['192.168.1.10/24', '2a00:8a00:2000:1290::5808/64']
+        roles: S1-U

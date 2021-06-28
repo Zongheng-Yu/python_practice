@@ -11,4 +11,4 @@ def insert_sort(arr):
 
 
 if __name__ == '__main__':
-    print range(3, 1, -1)
+    print(range(3, 1, -1))

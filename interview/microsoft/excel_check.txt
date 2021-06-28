@@ -1,0 +1,22 @@
+Problem Statement
+Excel is a very successful Microsoft product, used by billions of people around the world. A common problem our customers are facing is that they create Excel sheets which cannot be correctly evaluated. We want to create a "spell checker" to reduce these errors.
+A simple Excel sheet contains columns AA to ZZ and rows between 00 to 99. For example, AA00 is the top-left cell and MN54 is approximately in the middle.
+Each cell contains rational numbers or a mathematical expression, potentially referencing other cells. An empty cell can be assumed to contain the number 0.
+An Excel sheet can be evaluated if it is possible to deterministically expand all mathematical expressions to rational numbers.
+
+You are given an Excel sheet. Write a program which will determine if it can be evaluated.
+Input Data
+The data is given as a list of cells and values (either as an array of strings or from a file), in random order:
+Example 1
+AA00 = 10
+AA01 = AA00 + AB00
+AB00 = 15
+Your program will output:
+The Excel sheet can be evaluated.
+
+Example 2
+AA00 = 10
+AB00 = (AA00 + AA01) * 15
+AA01 = 20 + AB00
+Your program will output:
+The Excel sheet cannot be evaluated.

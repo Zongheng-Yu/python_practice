@@ -19,10 +19,9 @@ def main(input_file, output_file):
             xml.append(line)
 
     for xml in xmls:
-        print '.................................................'
+        print('.................................................')
         for line in xml:
-            print line
-
+            print(line)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,114 @@
+C:\Users\zonyu\AppData\Local\Programs\Python\Python37\python.exe C:/data/code/github/python_practice/infinity_coding/pronto/solution.py
+*******************************************************************
+[('RABLTESWPWRMACPS', 'NIHZSIV5'), ('NIHZSIV5', 'NIULSD1'), ('NIULSD1', 'LTE_DEVCAHZ_CHZ_UPMACPS'), ('LTE_DEVCAHZ_CHZ_UPMACPS', 'LTE_DEVLN1_FRLN_L2'), ('LTE_DEVLN1_FRLN_L2', 'RCPDEV'), ('RCPDEV', 'RCPMSG'), ('RCPMSG', 'NIULSD1'), ('NIULSD1', 'EXT_LTE_ASB_CSH_CP'), ('EXT_LTE_ASB_CSH_CP', 'NIULSD1'), ('NIULSD1', 'EXT_LTE_ASB_CSH_UPMACPS'), ('EXT_LTE_ASB_CSH_UPMACPS', 'RCPDEV'), ('RCPDEV', 'RCPMSG'), ('RCPMSG', 'RCPTNS'), ('RCPTNS', 'RCPDPM'), ('RCPDPM', 'RCPASM_CCS'), ('RCPASM_CCS', 'RCPDPM'), ('RCPDPM', 'RCPASM_CCS')]
+*******************************************************************
+[('NIESSCBTSMZOAM', 'MANO_HZH_MZOM'), ('MANO_HZH_MZOM', 'NIHZSIV6'), ('MANO_HZH_MZOM', 'NIHZSIV6'), ('NIHZSIV6', 'MANO_HZH_MZOM'), ('NIHZSIV6', 'MANO_HZH_MZOM'), ('MANO_HZH_MZOM', 'EXT_NIESSCBTSMZOAM')]
+*******************************************************************
+[('RABLTESWPWRULPHY', 'NIHZPDSCI'), ('NIHZPDSCI', 'RABLTESWPWRULPHY'), ('RABLTESWPWRULPHY', 'NIHZPDSCI'), ('NIHZPDSCI', 'NIULSD1'), ('NIULSD1', 'NIHZPDSCI'), ('NIHZPDSCI', 'RABLTESWL2'), ('RABLTESWL2', 'RABLTESWFOUL2'), ('RABLTESWFOUL2', 'NIHZPDSCI')]
+{
+  "records": [
+    {
+      "PR ID": "PR351097",
+      "Group In Charge": "RCPASM_CCS",
+      "Reported Date": "12.06.2018",
+      "Author": "Xu, Hongli (NSB - CN/Hangzhou)",
+      "Author Group": "NIHZSIV5",
+      "State": "Correction Not Needed",
+      "Transfer Path": [
+        "RABLTESWPWRMACPS",
+        "NIHZSIV5",
+        "NIULSD1",
+        "LTE_DEVCAHZ_CHZ_UPMACPS",
+        "LTE_DEVLN1_FRLN_L2",
+        "RCPDEV",
+        "RCPMSG",
+        "NIULSD1",
+        "EXT_LTE_ASB_CSH_CP",
+        "NIULSD1",
+        "EXT_LTE_ASB_CSH_UPMACPS",
+        "RCPDEV",
+        "RCPMSG",
+        "RCPTNS",
+        "RCPDPM",
+        "RCPASM_CCS",
+        "RCPDPM",
+        "RCPASM_CCS"
+      ],
+      "Transfer times": 18,
+      "Solving Path": [
+        "RABLTESWPWRMACPS",
+        "NIHZSIV5",
+        "NIULSD1",
+        "EXT_LTE_ASB_CSH_UPMACPS",
+        "RCPDEV",
+        "RCPMSG",
+        "RCPTNS",
+        "RCPDPM",
+        "RCPASM_CCS"
+      ],
+      "Pingpong times": 6,
+      "Attached PRs": "< empty >",
+      "Attached": "no",
+      "Attached To": ""
+    },
+    {
+      "PR ID": "PR351879",
+      "Group In Charge": "EXT_NIESSCBTSMZOAM",
+      "Reported Date": "14.06.2018",
+      "Author": "Fu, Hongye (NSB - CN/Hangzhou)",
+      "Author Group": "NIHZSIV6",
+      "State": "Closed",
+      "Transfer Path": [
+        "NIESSCBTSMZOAM",
+        "MANO_HZH_MZOM",
+        "NIHZSIV6",
+        "MANO_HZH_MZOM",
+        "NIHZSIV6",
+        "MANO_HZH_MZOM",
+        "NIHZSIV6",
+        "MANO_HZH_MZOM",
+        "EXT_NIESSCBTSMZOAM"
+      ],
+      "Transfer times": 9,
+      "Solving Path": [
+        "NIESSCBTSMZOAM",
+        "MANO_HZH_MZOM",
+        "EXT_NIESSCBTSMZOAM"
+      ],
+      "Pingpong times": 5,
+      "Attached PRs": "< empty >",
+      "Attached": "no",
+      "Attached To": ""
+    },
+    {
+      "PR ID": "PR351948",
+      "Group In Charge": "NIHZPDSCI",
+      "Reported Date": "14.06.2018",
+      "Author": "Xian, Xue (NSB - CN/Hangzhou)",
+      "Author Group": "NIHZPDSCI",
+      "State": "Closed",
+      "Transfer Path": [
+        "RABLTESWPWRULPHY",
+        "NIHZPDSCI",
+        "RABLTESWPWRULPHY",
+        "NIHZPDSCI",
+        "NIULSD1",
+        "NIHZPDSCI",
+        "RABLTESWL2",
+        "RABLTESWFOUL2",
+        "NIHZPDSCI"
+      ],
+      "Transfer times": 9,
+      "Solving Path": [
+        "RABLTESWPWRULPHY",
+        "NIHZPDSCI"
+      ],
+      "Pingpong times": 4,
+      "Attached PRs": "< empty >",
+      "Attached": "no",
+      "Attached To": ""
+    }
+  ],
+  "total": 3
+}
+Process finished with exit code 0
